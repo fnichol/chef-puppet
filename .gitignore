@@ -1,0 +1,4 @@
+Gemfile.lock
+Berksfile.lock
+tmp/
+.rvmrc
