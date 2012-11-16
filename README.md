@@ -13,6 +13,10 @@ be added in the future. Pull requests [welcome][issues]!
 
 ## <a name="usage"></a> Usage
 
+To set up a Puppet Master service, simply include `recipe[puppet::master]`
+in your run\_list, bam! See the [Attributes](#attributes) section for more
+details on tuning the server.
+
 ## <a name="requirements"></a> Requirements
 
 ### <a name="requirements-chef"></a> Chef
