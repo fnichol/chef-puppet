@@ -13,7 +13,7 @@ Vagrant::Config.run do |config|
 
   config.vm.provision :chef_solo do |chef|
     chef.run_list = [
-      "recipe[puppetmaster]"
+      "recipe[puppet::master]"
     ]
 
     chef.json = {

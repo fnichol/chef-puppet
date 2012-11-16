@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: puppet
-# Recipe:: default
+# Recipe:: master
 #
 # Copyright 2012, Fletcher Nichol
 #
@@ -17,3 +17,16 @@
 # limitations under the License.
 #
 
+apt_repository "puppetlabs" do
+  uri           "http://apt.puppetlabs.com/"
+  distribution  node['lsb']['codename']
+  components    ["main"]
+  key           "http://apt.puppetlabs.com/pubkey.gpg"
+end
+
+package "puppetmaster"
+
+service "puppetmaster" do
+  supports  :status => true, :restart => true, :reload => false
+  action    [ :enable, :start ]
+end
