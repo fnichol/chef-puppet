@@ -30,3 +30,9 @@ service "puppetmaster" do
   supports  :status => true, :restart => true, :reload => false
   action    [ :enable, :start ]
 end
+
+template "/etc/puppet/puppet.conf" do
+  source  "puppet.conf.erb"
+  mode    "0644"
+  variables(:conf => node['puppet']['master_conf'])
+end
