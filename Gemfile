@@ -9,3 +9,5 @@ gem 'chef', (ENV['CHEF_VERSION'] || '>= 0.10.10')
 group :integration do
   gem 'berkshelf'
 end
+gem 'test-kitchen'
+gem 'kitchen-vagrant'

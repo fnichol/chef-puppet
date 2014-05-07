@@ -17,14 +17,31 @@
 # limitations under the License.
 #
 
-apt_repository "puppetlabs" do
-  uri           "http://apt.puppetlabs.com/"
-  distribution  node['lsb']['codename']
-  components    ["main"]
-  key           "http://apt.puppetlabs.com/pubkey.gpg"
+majver = node['platform_version'].split(".")[0]
+
+case node['platform_family']
+when 'debian'
+  apt_repository "puppetlabs" do
+    uri           "http://apt.puppetlabs.com/"
+    distribution  node['lsb']['codename']
+    components    ["main"]
+    key           "http://apt.puppetlabs.com/pubkey.gpg"
+  end
+when 'rhel'
+  remote_file "/tmp/puppetlabs-release-el-#{majver}.noarch.rpm" do
+    source "http://yum.puppetlabs.com/puppetlabs-release-el-#{majver}.noarch.rpm"
+  end
+
+  package "puppetlabs-release-el-#{majver}" do
+    source "/tmp/puppetlabs-release-el-#{majver}.noarch.rpm"
+  end
 end
 
-package "puppetmaster"
+log node['puppet']['package_name']
+
+package node['puppet']['package_name'] do
+  action :install
+end
 
 service "puppetmaster" do
   supports  :status => true, :restart => true, :reload => false

@@ -9,3 +9,4 @@ version           "0.2.1"
 supports "ubuntu"
 
 depends "apt"
+depends "yum"
