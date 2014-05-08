@@ -1,8 +1,8 @@
 #
 # Cookbook Name:: puppet
-# Recipe:: master
+# Recipe:: client
 #
-# Copyright 2012, Fletcher Nichol
+# Copyright 2014, Sean CArolan
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -37,19 +37,6 @@ when 'rhel'
   end
 end
 
-# log node['puppet']['package_name']
-
-package node['puppet']['package_name'] do
+package 'puppet' do
   action :install
-end
-
-service "puppetmaster" do
-  supports  :status => true, :restart => true, :reload => false
-  action    [ :enable, :start ]
-end
-
-template "/etc/puppet/puppet.conf" do
-  source  "puppet.conf.erb"
-  mode    "0644"
-  variables(:conf => node['puppet']['master_conf'])
 end
