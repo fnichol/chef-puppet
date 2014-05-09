@@ -1,7 +1,0 @@
-Gemfile.lock
-Berksfile.lock
-tmp/
-.rvmrc
-.vagrant
-.kitchen/
-.kitchen.local.yml
