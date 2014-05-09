@@ -19,6 +19,6 @@
 
 # Fix the /etc/hosts file with the address of the puppetmaster server
 
-execute "echo '#{node['puppet']['server_ip']} puppet #{node['puppet']['client_conf']['main']['server']} >> /etc/hosts" do
+execute "echo '#{node['puppet']['server_ip']} puppet #{node['puppet']['client_conf']['main']['server']}' >> /etc/hosts" do
   not_if "grep -q #{node['puppet']['client_conf']['main']['server']} /etc/hosts"
 end

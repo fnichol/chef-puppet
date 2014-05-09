@@ -33,7 +33,7 @@ default['puppet']['master_conf']['master']['ssl_client_verify_header'] = 'SSL_CL
 default['puppet']['autosign']['whitelist'] = [ '*.com', '*.net', '*.org', '*.local' ]
 
 # Module list to install from Puppet Forge
-default['puppet']['modules']['install'] = %w(mysql java apache)
+default['puppet']['modules']['install'] = %w(stdlib concat mysql java apache)
 
 # Modules you want to use in the load test recipe
 default['puppet']['modules']['loadtest'] = %w(mysql::server java apache)
