@@ -36,7 +36,7 @@ default['puppet']['autosign']['whitelist'] = [ '*.com', '*.net', '*.org', '*.loc
 default['puppet']['modules']['install'] = %w(stdlib concat mysql java apache)
 
 # Modules you want to use in the load test recipe
-default['puppet']['modules']['loadtest'] = %w(mysql::server java apache)
+default['puppet']['modules']['loadtest'] = %w(stdlib mysql::server java apache)
 
 # Client specific configurations
 default['puppet']['client_conf']['main']['server']      = 'localhost'
