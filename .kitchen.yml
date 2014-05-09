@@ -6,10 +6,14 @@ provisioner:
   name: chef_zero
 
 platforms:
-  - name: centos-6.4
+  - name: centos-6.5
 
 suites:
   - name: default
     run_list:
-      - recipe[puppet::master]
+      - recipe[puppet::client]
     attributes:
+      puppet:
+        client_conf:
+          main:
+            server: 'ec2-54-227-202-37.compute-1.amazonaws.com'

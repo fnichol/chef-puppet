@@ -1,8 +1,8 @@
 #
 # Cookbook Name:: puppet
-# Recipe:: client
+# Recipe:: loadtest
 #
-# Copyright 2014, Sean CArolan
+# Copyright 2014, Sean Carolan
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -39,14 +39,4 @@ end
 
 package 'puppet' do
   action :install
-end
-
-template '/etc/puppet/puppet.conf' do
-  source  'puppet.conf.erb'
-  mode    '0644'
-  variables(:conf => node['puppet']['client_conf'])
-end
-
-service 'puppet' do
-  action [ :start, :enable ]
 end

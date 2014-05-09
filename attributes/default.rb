@@ -17,15 +17,28 @@
 # limitations under the License.
 #
 
+# Server specific configurations
 default['puppet']['master_conf']['main']['logdir']      = '/var/log/puppet'
 default['puppet']['master_conf']['main']['vardir']      = '/var/lib/puppet'
 default['puppet']['master_conf']['main']['ssldir']      = '/var/lib/puppet/ssl'
 default['puppet']['master_conf']['main']['rundir']      = '/var/run/puppet'
+default['puppet']['master_conf']['main']['autosign']      = 'true'
 default['puppet']['master_conf']['main']['factpath']    = '$vardir/lib/facter'
 default['puppet']['master_conf']['main']['templatedir'] = '$confdir/templates'
 
 default['puppet']['master_conf']['master']['ssl_client_header']        = 'SSL_CLIENT_S_DN'
 default['puppet']['master_conf']['master']['ssl_client_verify_header'] = 'SSL_CLIENT_VERIFY'
+
+default['puppet']['autosign']['whitelist'] = [ '*.com', '*.net', '*.org', '*.local' ]
+
+# Client specific configurations
+default['puppet']['client_conf']['main']['server']      = 'localhost'
+default['puppet']['client_conf']['main']['logdir']      = '/var/log/puppet'
+default['puppet']['client_conf']['main']['vardir']      = '/var/lib/puppet'
+default['puppet']['client_conf']['main']['ssldir']      = '/var/lib/puppet/ssl'
+default['puppet']['client_conf']['main']['rundir']      = '/var/run/puppet'
+default['puppet']['client_conf']['main']['factpath']    = '$vardir/lib/facter'
+default['puppet']['client_conf']['main']['templatedir'] = '$confdir/templates'
 
 case node['platform_family']
 when 'rhel'
