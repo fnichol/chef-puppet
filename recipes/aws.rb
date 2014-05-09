@@ -1,8 +1,8 @@
 #
 # Cookbook Name:: puppet
-# Recipe:: default
+# Recipe:: aws
 #
-# Copyright 2012, Fletcher Nichol
+# Copyright 2014, Sean Carolan
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,3 +16,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+# Fix up the hostname so it matches the public DNS name of the server.
+# This is required for authentication and registering new clients.
+execute "hostname #{node['ec2']['public_hostname']}"
+
+case node['platform_family']
+when 'debian'
+  template '/etc/hostname' do
+    source 'hostname.erb'
+  end
+when 'rhel'
+  execute "perl -p -i -e 's/^HOSTNAME=.*/HOSTNAME=#{node['ec2']['public_hostname']}/' /etc/sysconfig/network"
+end
