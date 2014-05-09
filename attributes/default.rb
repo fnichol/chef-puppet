@@ -22,7 +22,7 @@ default['puppet']['master_conf']['main']['logdir']      = '/var/log/puppet'
 default['puppet']['master_conf']['main']['vardir']      = '/var/lib/puppet'
 default['puppet']['master_conf']['main']['ssldir']      = '/var/lib/puppet/ssl'
 default['puppet']['master_conf']['main']['rundir']      = '/var/run/puppet'
-default['puppet']['master_conf']['main']['autosign']      = 'false'
+default['puppet']['master_conf']['main']['autosign']      = '$confdir/autosign.conf'
 default['puppet']['master_conf']['main']['factpath']    = '$vardir/lib/facter'
 default['puppet']['master_conf']['main']['templatedir'] = '$confdir/templates'
 
@@ -31,6 +31,12 @@ default['puppet']['master_conf']['master']['ssl_client_verify_header'] = 'SSL_CL
 
 # This is a *very* open configuration. Do NOT use it in production!
 default['puppet']['autosign']['whitelist'] = [ '*.com', '*.net', '*.org', '*.local' ]
+
+# Module list to install from Puppet Forge
+default['puppet']['modules']['install'] = %w(mysql java apache)
+
+# Modules you want to use in the load test recipe
+default['puppet']['modules']['loadtest'] = %w(mysql::server java apache)
 
 # Client specific configurations
 default['puppet']['client_conf']['main']['server']      = 'localhost'

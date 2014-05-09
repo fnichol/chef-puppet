@@ -18,3 +18,37 @@
 #
 
 # TODO:  Write code that puts some stress on the Puppet server.
+
+template '/etc/puppet/manifests/modules.pp' do
+  source 'modules.pp.erb'
+  mode '0644'
+  owner 'root'
+  group 'root'
+  variables(
+    :modules => node['puppet']['modules']['install']
+  )
+end
+
+template '/etc/puppet/manifests/nodes.pp' do
+  source 'nodes.pp.erb'
+  mode '0644'
+  owner 'root'
+  group 'root'
+  variables(
+    :modules => node['puppet']['modules']['loadtest']
+  )
+end
+
+template '/etc/puppet/manifests/site.pp' do
+  source 'site.pp.erb'
+  mode '0644'
+  owner 'root'
+  group 'root'
+  variables(
+    :hostname => node['ec2']['public_hostname']
+  )
+end
+
+node['puppet']['modules']['install'].each do |mod|
+  execute "puppet module install puppetlabs-#{mod} --force"
+end
