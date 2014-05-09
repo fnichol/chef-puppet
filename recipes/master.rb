@@ -28,6 +28,8 @@ when 'debian'
     key           "http://apt.puppetlabs.com/pubkey.gpg"
   end
 when 'rhel'
+  # We use 'remote_file' and 'package' instead of 'yum_repo' here because
+  # there are about a dozen individual yum repos to configure. This is simpler.
   remote_file "#{Chef::Config[:file_cache_path]}/puppetlabs-release-el-#{majver}.noarch.rpm" do
     source "http://yum.puppetlabs.com/puppetlabs-release-el-#{majver}.noarch.rpm"
   end
@@ -36,8 +38,6 @@ when 'rhel'
     source "#{Chef::Config[:file_cache_path]}/puppetlabs-release-el-#{majver}.noarch.rpm"
   end
 end
-
-# log node['puppet']['package_name']
 
 package node['puppet']['package_name'] do
   action :install

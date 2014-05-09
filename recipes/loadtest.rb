@@ -17,26 +17,4 @@
 # limitations under the License.
 #
 
-majver = node['platform_version'].split(".")[0]
-
-case node['platform_family']
-when 'debian'
-  apt_repository "puppetlabs" do
-    uri           "http://apt.puppetlabs.com/"
-    distribution  node['lsb']['codename']
-    components    ["main"]
-    key           "http://apt.puppetlabs.com/pubkey.gpg"
-  end
-when 'rhel'
-  remote_file "#{Chef::Config[:file_cache_path]}/puppetlabs-release-el-#{majver}.noarch.rpm" do
-    source "http://yum.puppetlabs.com/puppetlabs-release-el-#{majver}.noarch.rpm"
-  end
-
-  package "puppetlabs-release-el-#{majver}" do
-    source "#{Chef::Config[:file_cache_path]}/puppetlabs-release-el-#{majver}.noarch.rpm"
-  end
-end
-
-package 'puppet' do
-  action :install
-end
+# TODO:  Write code that puts some stress on the Puppet server.

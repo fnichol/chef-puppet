@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+# Fix up the hostname so it matches the public DNS name of the server.
+# This is required for authentication and registering new clients.
 execute "hostname #{node['ec2']['public_hostname']}"
 
 case node['platform_family']

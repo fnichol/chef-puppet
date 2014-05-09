@@ -17,6 +17,7 @@
 # limitations under the License.
 #
 
+# Installs the puppet client and starts up puppet agent
 majver = node['platform_version'].split(".")[0]
 
 case node['platform_family']
