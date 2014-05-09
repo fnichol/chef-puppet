@@ -16,4 +16,4 @@ suites:
       puppet:
         client_conf:
           main:
-            server: 'ec2-54-227-202-37.compute-1.amazonaws.com'
+            server: 'localhost'
