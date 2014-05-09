@@ -12,8 +12,10 @@ suites:
   - name: client
     run_list:
       - recipe[puppet::client]
+      - recipe[puppet::hostsfile]
     attributes:
       puppet:
         client_conf:
           main:
             server: 'ec2-54-82-223-163.compute-1.amazonaws.com'
+        server_ip: '54.82.223.163'

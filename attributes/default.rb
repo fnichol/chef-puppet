@@ -47,6 +47,9 @@ default['puppet']['client_conf']['main']['rundir']      = '/var/run/puppet'
 default['puppet']['client_conf']['main']['factpath']    = '$vardir/lib/facter'
 default['puppet']['client_conf']['main']['templatedir'] = '$confdir/templates'
 
+# Server IP address
+default['puppet']['server_ip'] = '127.0.0.1'
+
 case node['platform_family']
 when 'rhel'
   default['puppet']['package_name'] = 'puppet-server'
