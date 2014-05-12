@@ -17,6 +17,13 @@
 # limitations under the License.
 #
 
+# The puppet agent must be run at least once to generate the server's SSL cert
+execute "puppet agent --waitforcert 60 -t" do
+  not_if { File.exist?("/var/lib/puppet/ssl/certs/#{node['puppet']['client_conf']['main']['server']}") }
+  returns [0, 2]
+  timeout 120
+end
+
 # Stop and disable the WEBrick puppetmaster
 service 'puppetmaster' do
   action [ :stop, :disable ]
