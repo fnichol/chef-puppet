@@ -17,5 +17,5 @@ suites:
       puppet:
         client_conf:
           main:
-            server: 'ec2-75-101-225-210.compute-1.amazonaws.com'
-        server_ip: '75.101.225.210'
+            server: 'ec2-54-81-131-153.compute-1.amazonaws.com'
+        server_ip: '54.81.131.153'

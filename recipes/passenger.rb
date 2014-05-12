@@ -90,5 +90,5 @@ end
 # Finally we can start up Apache with the passenger module enabled.
 # And they said Chef was hard!
 service apachename do
-  action [ :enable, :start ]
+  action [ :enable, :restart ]
 end

@@ -2,6 +2,9 @@
 # Local modifications will be overridden
 
 node default {
+}
+
+node /^.*\.vagrantup\.com/ {
 <% @modules.each do |mod| -%>
 include "<%= mod %>"
 <% end -%>

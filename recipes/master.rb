@@ -43,15 +43,15 @@ package node['puppet']['package_name'] do
   action :install
 end
 
-service "puppetmaster" do
-  supports  :status => true, :restart => true, :reload => false
-  action    [ :enable, :start ]
-end
-
 template "/etc/puppet/puppet.conf" do
   source  "puppet.conf.erb"
   mode    "0644"
   variables(:conf => node['puppet']['master_conf'])
+end
+
+service "puppetmaster" do
+  supports  :status => true, :restart => true, :reload => false
+  action    [ :enable, :start ]
 end
 
 # The puppet agent must be run at least once to generate the server's SSL cert
