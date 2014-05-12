@@ -6,8 +6,7 @@ Installs and manages a Puppet Master service. No, really.
 
 Contains recipes for the Puppetmaster server with either the default 
 WEBrick web server, or Ruby Phusion Passenger.  Also includes a client 
-recipe for installing the Puppet agent on clients.  
-Pull requests [welcome][issues]!
+recipe for installing the Puppet agent on clients. Pull requests [welcome][issues]!
 
 * Github: https://github.com/fnichol/chef-puppet
 * Opscode Community Site: http://community.opscode.com/cookbooks/puppet
