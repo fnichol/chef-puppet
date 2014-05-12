@@ -66,6 +66,10 @@ when 'debian'
   end
   execute 'a2ensite puppetmaster'
 when 'rhel'
+  # Disable SELinux, Puppet with Passenger doesn't like it
+  execute "echo '0' > /selinux/enforce"
+  execute "perl -p -i -e 's/^SELINUX=.*/SELINUX=disabled/' /etc/selinux/config"
+
   apachename = 'httpd'
   template '/etc/httpd/conf.d/puppet.conf' do
     source 'puppet_vhost.conf.erb'
@@ -113,9 +117,8 @@ template '/usr/share/puppet/rack/puppetmasterd/config.ru' do
   group 'puppet'
 end
 
-# Fix permissions and disable SELinux
+# Fix permissions
 execute 'chown -R puppet:puppet /usr/share/puppet'
-execute 'echo "0" /selinux/enforce'
 
 # Finally we can start up Apache with the passenger module enabled.
 # And they said Chef was hard!
