@@ -113,7 +113,9 @@ template '/usr/share/puppet/rack/puppetmasterd/config.ru' do
   group 'puppet'
 end
 
+# Fix permissions and disable SELinux
 execute 'chown -R puppet:puppet /usr/share/puppet'
+execute 'echo "0" /selinux/enforce'
 
 # Finally we can start up Apache with the passenger module enabled.
 # And they said Chef was hard!
