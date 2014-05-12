@@ -54,6 +54,17 @@ when 'rhel'
       :passenger_version => node['puppet']['passenger']['version']
     )
   end
+
+  # These apache modules are required for it to start
+  modules = %w(ssl headers)
+  modules.each do |mod|
+    template "/etc/httpd/conf.d/#{mod}.load" do
+      source "#{mod}.load.erb"
+      owner 'puppet'
+      group 'puppet'
+      action :create
+    end
+  end
 end
 
 # Install the passenger module
@@ -76,6 +87,8 @@ template '/usr/share/puppet/rack/puppetmasterd/config.ru' do
   group 'puppet'
 end
 
+# Finally we can start up Apache with the passenger module enabled.
+# And they said Chef was hard!
 service apachename do
   action [ :enable, :start ]
 end
