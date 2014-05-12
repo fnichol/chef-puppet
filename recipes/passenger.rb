@@ -79,7 +79,10 @@ when 'rhel'
 end
 
 # Install the passenger module
-log 'Installing the passenger module.  This may take a while...'
+log 'Installing Passenger Module' do
+  message 'Installing the Apache Phusion Passenger module. This may take a while...'
+end
+
 execute 'passenger-install-apache2-module'
 
 dirs = %w(public tmp)
