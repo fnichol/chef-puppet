@@ -48,6 +48,8 @@ template '/etc/puppet/puppet.conf' do
   variables(:conf => node['puppet']['client_conf'])
 end
 
+execute 'puppet agent -t'
+
 service 'puppet' do
   action [ :start, :enable ]
 end
