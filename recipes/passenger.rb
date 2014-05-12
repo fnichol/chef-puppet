@@ -113,6 +113,8 @@ template '/usr/share/puppet/rack/puppetmasterd/config.ru' do
   group 'puppet'
 end
 
+execute 'chown -R puppet:puppet /usr/share/puppet'
+
 # Finally we can start up Apache with the passenger module enabled.
 # And they said Chef was hard!
 service apachename do
