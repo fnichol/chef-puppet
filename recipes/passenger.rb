@@ -38,6 +38,10 @@ node['puppet']['passenger']['gems'].each do |rubygem|
   gem_package rubygem
 end
 
+# Fetch the Phusion Passenger version
+# This must be done after passenger is installed!
+node.default['puppet']['passenger']['version'] = `passenger -v 2>&1 | head -1 | awk '{ print $4 }'`.chomp
+
 # Enable mod_ssl, configure puppet apache vhost
 case node['platform_family']
 when 'debian'
@@ -75,6 +79,7 @@ when 'rhel'
 end
 
 # Install the passenger module
+log 'Installing the passenger module.  This may take a while...'
 execute 'passenger-install-apache2-module'
 
 dirs = %w(public tmp)

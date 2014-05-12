@@ -52,9 +52,6 @@ default['puppet']['modules']['install'] = %w(stdlib concat mysql java apache)
 # Modules you want to use in the load test recipe
 default['puppet']['modules']['loadtest'] = %w(stdlib mysql::server java apache)
 
-# Fetch the Phusion Passenger version
-default['puppet']['passenger']['version'] = `passenger -v 2>&1 | head -1 | awk '{ print $4 }'`.chomp
-
 ##############################################################################
 # Client specific configurations
 # Everything in the master_conf hash is included in puppet.conf when you use
