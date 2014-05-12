@@ -16,6 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+#
+
+log 'Generating server SSL cert' do
+  message 'Running puppet agent to generate cert.'
+end
 
 # The puppet agent must be run at least once to generate the server's SSL cert
 execute "puppet agent --waitforcert 60 -t" do
@@ -34,8 +39,12 @@ node['puppet']['passenger']['packages'].each do |pack|
   package pack
 end
 
+# Install these during compile, so we can determine the version of passenger
 node['puppet']['passenger']['gems'].each do |rubygem|
-  gem_package rubygem
+  r = gem_package rubygem do
+    action :nothing
+  end
+  r.run_action(:install)
 end
 
 # Fetch the Phusion Passenger version
