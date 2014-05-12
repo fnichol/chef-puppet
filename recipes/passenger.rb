@@ -34,12 +34,14 @@ service 'puppetmaster' do
   action [ :stop, :disable ]
 end
 
-# Install prerequisites and Ruby gems
+# Install prerequisites and Ruby gems during compile phase
 node['puppet']['passenger']['packages'].each do |pack|
-  package pack
+  p = package pack do
+    action :nothing
+  end
+  p.run_action(:install)
 end
 
-# Install these during compile, so we can determine the version of passenger
 node['puppet']['passenger']['gems'].each do |rubygem|
   r = gem_package rubygem do
     action :nothing
