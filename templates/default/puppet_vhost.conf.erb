@@ -19,7 +19,8 @@ PassengerRuby /usr/bin/ruby
 # And the passenger performance tuning settings:
 PassengerHighPerformance On
 # Set this to about 1.5 times the number of CPU cores in your master:
-PassengerMaxPoolSize 12
+#PassengerMaxPoolSize 12
+PassengerMaxPoolSize <%= (node['cpu']['total'] * 1.5).ceil %>
 # Recycle master processes after they service 1000 requests
 PassengerMaxRequests 1000
 # Stop processes if they sit idle for 10 minutes
