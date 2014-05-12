@@ -19,7 +19,10 @@
 
 # Fix up the hostname so it matches the public DNS name of the server.
 # This is required for authentication and registering new clients.
-execute "hostname #{node['ec2']['public_hostname']}"
+setname = execute "hostname #{node['ec2']['public_hostname']}" do
+  action :nothing
+end
+setname.run_action(:run)
 
 case node['platform_family']
 when 'debian'
