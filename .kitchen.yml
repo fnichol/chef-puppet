@@ -1,21 +1,32 @@
 ---
 driver:
-  name: vagrant
-
+  name: docker
 provisioner:
   name: chef_zero
-
+driver_config:
+  require_chef_omnibus: true
+  socket: tcp://localhost:4243
 platforms:
-  - name: centos-6.5
-
+- name: centos-6.4
+  driver_config:
+    image: centos:6.4
+    platform: centos
+  run_list:
+    - recipe[puppet::client]
+  attributes:
+    puppet:
+      client_conf:
+        main:
+          server: 'ec2-54-86-219-77.compute-1.amazonaws.com'
+      server_ip: '54.86.219.77'
 suites:
-  - name: client
-    run_list:
-      - recipe[puppet::hostsfile]
-      - recipe[puppet::client]
-    attributes:
-      puppet:
-        client_conf:
-          main:
-            server: 'ec2-54-227-193-236.compute-1.amazonaws.com'
-        server_ip: '54.227.193.236'
+  - name: client0
+  - name: client1
+  - name: client2
+  - name: client3
+  - name: client4
+  - name: client5
+  - name: client6
+  - name: client7
+  - name: client8
+  - name: client9

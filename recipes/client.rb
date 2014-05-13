@@ -48,12 +48,12 @@ template '/etc/puppet/puppet.conf' do
   variables(:conf => node['puppet']['client_conf'])
 end
 
-# Uncomment if you want to see the puppet run in your output
+# Runs puppet agent
 # execute 'puppet agent -t' do
 #   returns [0, 2]
 # end
 
-# Starts the puppet agent service silently
-service 'puppet' do
-  action [ :start, :enable ]
-end
+# Starts the puppet agent service 
+# service 'puppet' do
+#   action [ :start, :enable ]
+# end
