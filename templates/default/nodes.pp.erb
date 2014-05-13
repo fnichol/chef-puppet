@@ -4,7 +4,15 @@
 node default {
 }
 
+# Matches Vagrant virtual machines
 node /^.*\.vagrantup\.com/ {
+<% @modules.each do |mod| -%>
+include "<%= mod %>"
+<% end -%>
+}
+
+# Matches Docker Linux hostnames
+node /^[0-9a-z]{12}/ {
 <% @modules.each do |mod| -%>
 include "<%= mod %>"
 <% end -%>
