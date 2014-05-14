@@ -1,0 +1,23 @@
+---
+driver:
+  name: docker
+provisioner:
+  name: chef_zero
+driver_config:
+  require_chef_omnibus: true
+  socket: tcp://localhost:4243
+platforms:
+- name: centos-6.4
+  driver_config:
+    image: centos:6.4
+    platform: centos
+  run_list:
+    - recipe[puppet::client]
+  attributes:
+    puppet:
+      client_conf:
+        main:
+          server: 'ec2-54-86-123-127.compute-1.amazonaws.com'
+      server_ip: '54.86.123.127'
+suites:
+  - name: default

@@ -4,9 +4,9 @@
 
 Installs and manages a Puppet Master service. No, really.
 
-Currently only the server is supported (that meets the immediate needs of the
-author), but support for Agent/master and Standalone deployment types could
-be added in the future. Pull requests [welcome][issues]!
+Contains recipes for the Puppetmaster server with either the default 
+WEBrick web server, or Ruby Phusion Passenger.  Also includes a client 
+recipe for installing the Puppet agent on clients. Pull requests [welcome][issues]!
 
 * Github: https://github.com/fnichol/chef-puppet
 * Opscode Community Site: http://community.opscode.com/cookbooks/puppet
@@ -29,6 +29,7 @@ Tested on 10.16.2 but newer and older version should work just fine. File an
 The following platforms have been tested with this cookbook, meaning that the
 recipes run on these platforms without error:
 
+* CentOS (6.5)
 * ubuntu (12.04)
 
 If you find this cookbook runs on other platforms/versions or you add support,
@@ -39,6 +40,7 @@ please file an [issue][issues]. Thank you!
 This cookbook depends on the following external cookbooks:
 
 * [apt][apt_cb]
+* [yum][yum_cb]
 
 ## <a name="installation"></a> Installation
 
