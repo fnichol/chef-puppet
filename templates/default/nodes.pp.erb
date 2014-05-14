@@ -17,3 +17,10 @@ node /^[0-9a-z]{12}/ {
 include "<%= mod %>"
 <% end -%>
 }
+
+# Matches Amazon EC2 instances
+node /^.*\.ec2\.internal/ {
+<% @modules.each do |mod| -%>
+include "<%= mod %>"
+<% end -%>
+}

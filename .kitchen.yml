@@ -17,16 +17,7 @@ platforms:
     puppet:
       client_conf:
         main:
-          server: 'ec2-54-86-219-77.compute-1.amazonaws.com'
-      server_ip: '54.86.219.77'
+          server: 'ec2-54-86-123-127.compute-1.amazonaws.com'
+      server_ip: '54.86.123.127'
 suites:
-  - name: client0
-  - name: client1
-  - name: client2
-  - name: client3
-  - name: client4
-  - name: client5
-  - name: client6
-  - name: client7
-  - name: client8
-  - name: client9
+  - name: default
